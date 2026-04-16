@@ -1,0 +1,67 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+public class WEEK2 {
+    public static void main(String[] args) throws InterruptedException {
+
+        // 1. Set path for ChromeDriver
+        System.setProperty("webdriver.chrome.driver", "C:\\Drivers\\chromedriver.exe");
+
+        // 2. Launch browser
+        WebDriver driver = new ChromeDriver();
+
+        // 3. Maximize window
+        driver.manage().window().maximize();
+
+        // 4. Open website
+        driver.get("https://www.mercurytravels.co.in/");
+
+        Thread.sleep(2000);
+
+        // 5. Create Actions object for mouse hover
+        Actions builder = new Actions(driver);
+
+        // 6. Locate Customer Login and hover
+        WebElement customerLogin = driver.findElement(By.xpath("(//a[normalize-space()='Customer Login'])[2]"));
+        builder.moveToElement(customerLogin).perform();
+
+        Thread.sleep(2000);
+
+        // 7. Click Register
+        WebElement register = driver.findElement(By.xpath("(//a[normalize-space()='Register'])[2]"));
+        register.click();
+
+        Thread.sleep(2000);
+
+        // 8. Fill First Name
+        driver.findElement(By.id("accfirst_name")).sendKeys("Ayesha");
+
+        // 9. Fill Last Name
+        driver.findElement(By.id("acc_last_name")).sendKeys("Fathima");
+
+        // 10. Fill Email
+        driver.findElement(By.id("acc_user_email")).sendKeys("test123@gmail.com");
+
+        // 11. Fill Password
+        driver.findElement(By.id("acc_user_password")).sendKeys("test123");
+
+        // 12. Confirm Password
+        driver.findElement(By.id("acc_user_passconf")).sendKeys("test123");
+
+        // 13. Enter Mobile Number
+        driver.findElement(By.id("acc_mobile_no")).sendKeys("9876543210");
+
+        Thread.sleep(2000);
+
+        // 14. Click Register Button
+        driver.findElement(By.xpath("//button[normalize-space()='Register']")).click();
+
+        Thread.sleep(2000);
+
+        // 15. Close browser
+        driver.quit();
+    }
+}
