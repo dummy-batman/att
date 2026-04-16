@@ -1,0 +1,59 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.Select;
+
+public class Week10 {
+
+    public static void main(String[] args) throws InterruptedException {
+
+        System.setProperty("webdriver.chrome.driver","C:\\Drivers\\chromedriver.exe");
+
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--remote-allow-origins=*");
+
+        WebDriver driver = new ChromeDriver(options);
+
+        driver.manage().window().maximize();
+
+        driver.get("https://accounts.google.com/signup");
+
+        Thread.sleep(3000);
+
+        driver.findElement(By.name("firstName")).sendKeys("Mohsen");
+        driver.findElement(By.name("lastName")).sendKeys("Peddy");
+
+        driver.findElement(By.xpath("//span[text()='Next']")).click();
+
+        Thread.sleep(3000);
+
+        Select month = new Select(driver.findElement(By.id("month")));
+        month.selectByValue("6");
+
+        driver.findElement(By.id("day")).sendKeys("21");
+        driver.findElement(By.id("year")).sendKeys("2007");
+
+        Select gender = new Select(driver.findElement(By.id("gender")));
+        gender.selectByValue("1");
+
+        driver.findElement(By.xpath("//span[text()='Next']")).click();
+
+        Thread.sleep(3000);
+
+        driver.findElement(By.name("Username")).sendKeys("mohsenpeddy12345");
+
+        driver.findElement(By.xpath("//span[text()='Next']")).click();
+
+        Thread.sleep(3000);
+
+        driver.findElement(By.name("Passwd")).sendKeys("Cmit123#");
+        driver.findElement(By.name("ConfirmPasswd")).sendKeys("Cmit123#");
+
+        driver.findElement(By.xpath("//span[text()='Next']")).click();
+
+        Thread.sleep(2000);
+
+        driver.quit();
+    }
+}
