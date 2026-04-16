@@ -1,0 +1,47 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class WEEK3 {
+    public static void main(String[] args) throws InterruptedException {
+
+        System.setProperty("webdriver.chrome.driver", "C:\\Drivers\\chromedriver.exe");
+
+        WebDriver driver = new ChromeDriver();
+
+        driver.get("https://www.facebook.com/");
+        driver.manage().window().maximize();
+
+        Thread.sleep(2000);
+
+        driver.findElement(By.partialLinkText("Create new account")).click();
+        Thread.sleep(2000);
+
+        driver.findElement(By.name("firstname")).sendKeys("ayesha");
+        driver.findElement(By.name("lastname")).sendKeys("fathima");
+        driver.findElement(By.name("reg_email__")).sendKeys("test123@gmail.com");
+        driver.findElement(By.name("reg_passwd__")).sendKeys("test123");
+
+        Thread.sleep(2000);
+
+        Select dateDropdown = new Select(driver.findElement(By.name("birthday_day")));
+        dateDropdown.selectByValue("23");
+
+        Select monthDropdown = new Select(driver.findElement(By.name("birthday_month")));
+        monthDropdown.selectByValue("7");
+
+        Select yearDropdown = new Select(driver.findElement(By.name("birthday_year")));
+        yearDropdown.selectByValue("2007");
+
+        Thread.sleep(2000);
+
+        driver.findElement(By.xpath("//label[text()='Female']")).click();
+
+        driver.findElement(By.name("websubmit")).click();
+
+        Thread.sleep(2000);
+
+        driver.quit();
+    }
+}
